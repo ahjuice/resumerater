@@ -9,6 +9,6 @@
 sam = User.create(name: "Sam", email: "sam@nothing.com")
 bart = User.create(name: "Bartholomew", email: "bart@hotmail.com")
 
-sam_general = Resume.create(image_url: "https://en.wikipedia.org/wiki/File:Resume.pdf", industry: "general", user: sam)
+sam_general = Resume.create(image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Resume.pdf/page1-463px-Resume.pdf.jpg", industry: "general", user: sam)
 
 bart_comment = Comment.create(resume: sam_general, poster: bart)
