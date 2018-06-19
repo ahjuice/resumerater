@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init(){
-  Adapter.getResumes()
-    .then()
+  // Adapter.getResumes()
+  //   .then(Resume.renderResumes)
 }
+
 
 // function renderImage(arr){
 //   let imageDiv = document.querySelector(".image-div")
