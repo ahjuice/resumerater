@@ -1,7 +1,7 @@
 class FormBuilder {
   static createUser(){
     return `
-    <form action="#" method="post">
+    <form id="create-user-form" action="#" method="post">
       Name:<br>
       <input id="user-name-input"type="text" name="name"><br>
       Email:<br>
