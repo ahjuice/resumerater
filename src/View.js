@@ -8,11 +8,11 @@ const View = (function createViewClass(){
           case 'welcome':
             View.welcome();
             break;
-          case 'login':
-            View.login();
-            break;
           case 'signup':
-
+            View.signup();
+            break;
+          case 'login':
+            // View.login();
             break;
           case '':
 
@@ -29,21 +29,43 @@ const View = (function createViewClass(){
           <button id="login-button">Log In</button>
           <button id="signup-button">Sign Up</button>
         `;
-
         content.innerHTML = html;
-        const loginButton = document.querySelector("#login-button")
-        loginButton.addEventListener('click', function(e){
+
+        const signupButton = document.querySelector("#signup-button")
+        signupButton.addEventListener('click', function(e){
           e.preventDefault()
-          View.render('login')
+          View.render('signup')
         })
+      }
+
+      static signup(){
+
+        let html = `<h1>Sign Up!</h1>`
+        html += FormBuilder.createUser()
+        content.innerHTML = html;
+
+        const formUser = document.querySelector("#create-user-form")
+        formUser.addEventListener('submit', function(e){
+          e.preventDefault()
+          const nameValue = document.querySelector("#user-name-input").value
+          const emailValue = document.querySelector("#email-input").value
+
+          let data = {
+            user: {
+              name: nameValue,
+              email: emailValue
+            }
+          }
+
+          Adapter.createUser(data)
+            .then(console.log)
+        })
+
+
       }
 
       static login(){
 
-        let html = `<h1>Login</h1>`
-        html += FormBuilder.createUser()
-
-        content.innerHTML = html
       }
     }
 
