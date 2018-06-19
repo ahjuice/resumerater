@@ -1,25 +1,23 @@
 class View {
-  constructor() {
-    this.content = document.querySelector("#main-content")
-  }
-
-  render(viewName) {
+  static render(viewName) {
     switch (viewName) {
-      case welcome:
-
+      case 'welcome':
+        View.welcome();
         break;
       default:
 
     }
   }
 
-  welcome() {
+  static welcome() {
+    const content = document.querySelector("#main-content")
+
     const html = `
       <h1>Welcome to ResumeRater!</h1>
       <button>Log In</button>
       <button>Sign Up</button>
     `;
 
-    this.content.innerHTML = html;
+    content.innerHTML = html;
   }
 }
