@@ -5,6 +5,10 @@ function init(){
     .then()
 }
 
+function renderResumeForm(){
+  
+}
+
 // function renderImage(arr){
 //   let imageDiv = document.querySelector(".image-div")
 //   let imageHTML = ``

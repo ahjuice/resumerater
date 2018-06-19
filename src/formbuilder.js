@@ -3,10 +3,10 @@ class FormBuilder {
     return `
     <form action="#" method="post">
       Name:<br>
-      <input type="text" name="name"><br>
+      <input id="user-name-input"type="text" name="name"><br>
       Email:<br>
-      <input type="text" name="email">
-      <input type="submit" value="Submit"
+      <input id="email-input" type="text" name="email">
+      <input type="submit" value="Submit">
     </form>
     `
   }
@@ -15,12 +15,12 @@ class FormBuilder {
     return `
     <form action="#" method="post">
       Title:<br>
-      <input type="text" name="title"><br>
+      <input id="resume-title-input" type="text" name="title"><br>
       Image URL:<br>
-      <input type="text" name="image_url">
+      <input id="image-url-input" type="text" name="image_url">
       Industry:<br>
-      <input type="text" name="industry">
-      <input type="submit" value="Submit"
+      <input id="industry-input" type="text" name="industry">
+      <input type="submit" value="Submit">
     </form>
     `
   }
@@ -28,8 +28,8 @@ class FormBuilder {
   static createComment(){
     return `
     <form action="#" method="post">
-      <textarea maxlength="250" name="content"><textarea>
-      <input type="submit" value="Submit"
+      <textarea id="content-input"maxlength="250" name="content"></textarea>
+      <input type="submit" value="Submit">
     </form>
     `
   }
