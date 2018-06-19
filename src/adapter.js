@@ -7,11 +7,13 @@ class Adapter {
   static getResumes(){
     return fetch(resumesURL)
       .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static getResume(id) {
     return fetch(`${resumesURL}/${id}`)
       .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static createResume(data) {
@@ -23,18 +25,24 @@ class Adapter {
       },
       body: jsonData
     }
-    return fetch(resumesURL, options).then(r => r.json())
+    return fetch(resumesURL, options)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static deleteResume(id) {
     const options = {
       method: 'DELETE'
     }
-    return fetch(`${resumesURL}/${id}`, options).then(r => r.json())
+    return fetch(`${resumesURL}/${id}`, options)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static getUser(id) {
-    return fetch(`${userURL}/${id}`).then(r => r.json())
+    return fetch(`${userURL}/${id}`)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static createUser(data) {
@@ -46,13 +54,17 @@ class Adapter {
       },
       body: jsonUserData
     }
-    return fetch(userURL, options).then(r => r.json())
+    return fetch(userURL, options)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static getComments(resumeId) {
-    return fetch(`${resumesURL}/${resumeId}/comments`).then(r => r.json())
+    return fetch(`${resumesURL}/${resumeId}/comments`)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
-  
+
 
 }
