@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', init)
 
 function init(){
   Adapter.getResumes()
-    .then()
+    .then(Resume.renderResumes)
 }
 
 // function renderImage(arr){
