@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', init)
 function init(){
   // Adapter.getResumes()
   //   .then(Resume.renderResumes)
+
+  View.render('welcome');
 }
 
 
