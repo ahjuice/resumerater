@@ -2,6 +2,7 @@ const baseURL = "http://localhost:3000/api/v1"
 const resumesURL = `${baseURL}/resumes`
 const userURL = `${baseURL}/users`
 
+
 class Adapter {
   static getResumes(){
     return fetch(resumesURL)
@@ -36,5 +37,22 @@ class Adapter {
     return fetch(`${userURL}/${id}`).then(r => r.json())
   }
 
+  static createUser(data) {
+    const jsonUserData = JSON.stringify(data)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonUserData
+    }
+    return fetch(userURL, options).then(r => r.json())
+  }
+
+  static getComments(resumeId) {
+    return fetch(`${resumesURL}/${resumeId}/comments`).then(r => r.json())
+  }
+
+  
 
 }
