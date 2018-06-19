@@ -1,9 +1,9 @@
 const baseURL = "http://localhost:3000/api/v1"
-const resumeURL = `${baseURL}/resumes`
+const resumesURL = `${baseURL}/resumes`
 
 class Adapter {
   static getResumes(){
-    return fetch(resumeURL)
+    return fetch(resumesURL)
       .then(r => r.json())
   }
 }
