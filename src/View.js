@@ -27,7 +27,7 @@ const View = (function createViewClass(){
         const html = `
           <h1>Welcome to ResumeRater!</h1>
           <button id="login-button">Log In</button>
-          <button>Sign Up</button>
+          <button id="signup-button">Sign Up</button>
         `;
 
         content.innerHTML = html;
@@ -39,6 +39,7 @@ const View = (function createViewClass(){
       }
 
       static login(){
+
         let html = `<h1>Login</h1>`
         html += FormBuilder.createUser()
 
