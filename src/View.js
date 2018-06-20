@@ -12,7 +12,7 @@ const View = (function createViewClass(){
             View.signup();
             break;
           case 'login':
-            // View.login();
+            View.login();
             break;
           case '':
 
@@ -34,14 +34,20 @@ const View = (function createViewClass(){
         const signupButton = document.querySelector("#signup-button")
         signupButton.addEventListener('click', function(e){
           e.preventDefault()
-          View.render('signup')
+          View.render('signup');
+        })
+
+        const loginButton = document.querySelector("#login-button")
+        loginButton.addEventListener('click', function(e){
+          e.preventDefault()
+          View.render('login');
         })
       }
 
       static signup(){
 
         let html = `<h1>Sign Up!</h1>`
-        html += FormBuilder.createUser()
+        html += FormBuilder.createUser();
         content.innerHTML = html;
 
         const formUser = document.querySelector("#create-user-form")
@@ -65,7 +71,11 @@ const View = (function createViewClass(){
       }
 
       static login(){
+        "I'm in!"
 
+        let html = `<h1>Log In</h1>`
+        html += FormBuilder.loginUser();
+        content.innerHTML = html;
       }
     }
 
