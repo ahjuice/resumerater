@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', init)
+let currentUser;
 
 function init(){
   // Adapter.getResumes()

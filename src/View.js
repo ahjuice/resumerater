@@ -15,8 +15,11 @@ const View = (function createViewClass(){
           case 'login':
             View.login();
             break;
-          case '':
-
+          case 'userNoResumes':
+            View.userNoResumes();
+            break;
+          case 'userWithResumes':
+            View.userWithResumes();
             break;
           default:
 
@@ -65,7 +68,7 @@ const View = (function createViewClass(){
           }
 
           Adapter.createUser(data)
-            .then(console.log)
+            .then(View.render("userNoResumes"))
         })
 
 
@@ -88,8 +91,31 @@ const View = (function createViewClass(){
             }
 
           Adapter.login(data)
-            .then(console.log)
+            .then(obj => View.setCurrentUser(obj))
+            .then(obj => View.checkForResumes(obj))
         })
+      }
+
+      static userNoResumes(){
+        console.log("I have no resumes")
+      }
+
+      static userWithResumes(){
+        console.log("I have resumes")
+      }
+
+      static setCurrentUser(obj){
+        currentUser = obj
+        return obj
+      }
+
+      static checkForResumes(obj){
+        console.log(obj)
+        if (obj.resumes.length === 0) {
+          View.render('userNoResumes')
+        } else {
+          View.render('userWithResumes')
+        }
       }
 
     }
