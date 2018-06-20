@@ -21,6 +21,9 @@ const View = (function createViewClass(){
           case 'userWithResumes':
             View.userWithResumes();
             break;
+          case 'addResume':
+            View.addResume();
+            break;
           default:
 
         }
@@ -93,7 +96,7 @@ const View = (function createViewClass(){
           Adapter.login(data)
             .then(obj => View.setCurrentUser(obj))
             .then(obj => View.checkForResumes(obj))
-            .then()
+        
         })
       }
 
@@ -112,8 +115,15 @@ const View = (function createViewClass(){
       }
 
       static userWithResumes(){
-        console.log(currentUser)
-        debugger;
+        let welcomeUser = `<h1 id="user-name-heading">Welcome ${currentUser.name}!</h1>`
+        let addResumeBtn = `<button id="add-resume-btn">Add Resume!</button>`
+        content.innerHTML = welcomeUser
+        content.innerHTML += addResumeBtn
+        Resume.renderResumes(currentUser.resumes)
+
+        document.querySelector('#add-resume-btn').addEventListener('click', (e) => 
+            View.render('addResume')
+        )
       }
 
       static setCurrentUser(obj){
@@ -127,6 +137,26 @@ const View = (function createViewClass(){
         } else {
           View.render('userWithResumes')
         }
+      }
+
+      static addResume() { 
+        content.innerHTML = FormBuilder.createResume()
+        const resumeForm = document.querySelector('#create-resume-form')
+        resumeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = {
+                title: e.target.children[1].value,
+                image_url: e.target.children[4].value,
+                industry: e.target.children[6].value,
+                user_id: currentUser.id
+            }
+
+            Adapter.createResume(data)
+            .then(resumeData => {
+                    currentUser.resumes.push(resumeData)
+                    View.render('userWithResumes')
+                })
+        })
       }
 
     }
