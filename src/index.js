@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', init)
 
 function init(){
-  // Adapter.getResumes()
-  //   .then(Resume.renderResumes)
-
+  const homeLink = document.querySelector("#home-link li a");
+  homeLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    View.render('welcome');
+  })
   View.render('welcome');
 }
 

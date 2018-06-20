@@ -1,3 +1,11 @@
 img {
   width: 80%
 }
+
+.nav-list {
+  display: grid;
+}
+
+#navbar {
+  
+}
