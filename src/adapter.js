@@ -65,6 +65,18 @@ class Adapter {
     return fetch(`${resumesURL}/${resumeId}/comments`, options).then(r => r.json())
   }
 
+  static login(email) {
+    const jsonEmail = JSON.stringify(email)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonEmail
+    }
+    return fetch(`${baseURL}/login`, options).then(r => r.json())
+  }
+
   //This update method will be for future use once we have a backend controller action and html edit form rendered
   // static updateComment(resumeId, commentId, data) {
   //   const jsonCommentData = JSON.stringify(data)
