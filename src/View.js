@@ -124,11 +124,44 @@ const View = (function createViewClass(){
         document.querySelector('#add-resume-btn').addEventListener('click', (e) => 
             View.render('addResume')
         )
+
+        document.addEventListener('click', (e) => {
+            
+            if (e.target.className === 'img') {
+                console.log(e.target.parentElement.dataset.resumeId)
+                // Adapter.getResume(e.target.parentElement.dataset.resumeId)
+                View.resumeView(e.target.parentElement.dataset.resumeId)
+            }
+        })
+
+      }
+
+    //   static findResume(id) {
+        
+
+    //   }
+
+      static resumeView(id){
+        content.innerHTML = '';
+        let selectedResume = currentUser.resumes.find(resume => resume.id === parseInt(id))
+        content.innerHTML = `<h1>${selectedResume.title}</h1>`
+        content.appendChild(Resume.showResume(selectedResume))
+        content.innerHTML += FormBuilder.createComment()
+        Adapter.getComments(selectedResume.id)
+            .then(commentArray => View.checkForComments(commentArray))
+            
+       
       }
 
       static setCurrentUser(obj){
         currentUser = obj
         return obj
+      }
+
+      static checkForComments(commentArray) {
+          if (commentArray.length > 0) {
+           return Comment.renderComments(commentArray)
+          }
       }
 
       static checkForResumes(obj){
