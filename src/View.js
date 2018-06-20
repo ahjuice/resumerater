@@ -2,6 +2,7 @@ const View = (function createViewClass(){
   const content = document.querySelector("#main-content")
 
   return class View {
+
       static render(viewName) {
         content.innerHTML = ''
         switch (viewName) {
@@ -71,12 +72,25 @@ const View = (function createViewClass(){
       }
 
       static login(){
-        "I'm in!"
 
         let html = `<h1>Log In</h1>`
         html += FormBuilder.loginUser();
         content.innerHTML = html;
-      }
-    }
 
+
+        const formLogin = document.querySelector("#login-user-form")
+        formLogin.addEventListener('submit', function(e){
+          e.preventDefault()
+          const emailValue = document.querySelector("#email-input").value
+
+          let data = {
+              email: emailValue
+            }
+
+          Adapter.login(data)
+            .then(console.log)
+        })
+      }
+
+    }
 })()
