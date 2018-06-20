@@ -93,15 +93,27 @@ const View = (function createViewClass(){
           Adapter.login(data)
             .then(obj => View.setCurrentUser(obj))
             .then(obj => View.checkForResumes(obj))
+            .then()
         })
       }
 
       static userNoResumes(){
-        console.log("I have no resumes")
+        //Welcome user with their name and add resume form builder
+        let welcomeUser = `<h1>Welcome ${currentUser.name}!</h1>
+        <br>
+        <h5>Enter a Resume</h5>
+        `
+        welcomeUser += FormBuilder.createResume();
+        content.innerHTML = welcomeUser;
+
+        //after successful submission of resume, re-render their page to show resume
+        View.render('userWithResumes');
+
       }
 
       static userWithResumes(){
-        console.log("I have resumes")
+        console.log(currentUser)
+        debugger;
       }
 
       static setCurrentUser(obj){
@@ -110,7 +122,6 @@ const View = (function createViewClass(){
       }
 
       static checkForResumes(obj){
-        console.log(obj)
         if (obj.resumes.length === 0) {
           View.render('userNoResumes')
         } else {
