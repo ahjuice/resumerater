@@ -10,6 +10,7 @@ class Resume {
     const resumeDiv = document.createElement('div');
     const resumeImg = document.createElement('img');
     resumeDiv.className = 'resume-div';
+    resumeImg.classList = 'img'
     resumeImg.src = resumeObj.image_url;
     resumeDiv.appendChild(resumeImg);
     return resumeDiv;
