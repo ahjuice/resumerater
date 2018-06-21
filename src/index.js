@@ -1,3 +1,5 @@
+let currentUser = null;
+
 document.addEventListener('DOMContentLoaded', init)
 
 function init(){
@@ -6,7 +8,14 @@ function init(){
     e.preventDefault();
     View.render('welcome');
   })
-  View.render('welcome');
+
+  if (User.isLoggedIn()) {
+    // stuff here
+  } else {
+    Navbar.render('noUser');
+    View.render('welcome');
+  }
+
 }
 
 

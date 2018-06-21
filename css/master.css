@@ -4,8 +4,19 @@ img {
 
 .nav-list {
   display: grid;
+  grid-auto-columns: 5%;
+  list-style-type: none;
+  -webkit-padding-start: 0px;
 }
 
-#navbar {
-  
+#home-link {
+  grid-column: 1 / 4;
+}
+
+#nav-links {
+  grid-column: 4 / 19;
+}
+
+#user-link {
+  grid-column: 19 / 21;
 }
