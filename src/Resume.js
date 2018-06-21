@@ -26,9 +26,32 @@ class Resume {
   static showResume(resumeObj) {
     const resumeDiv = document.createElement('div');
     const resumeImg = document.createElement('img');
+    const starDiv = document.createElement('div');
+    const resumeStar1 = document.createElement('span');
+    const resumeStar2 = document.createElement('span');
+    const resumeStar3 = document.createElement('span');
+    const resumeStar4 = document.createElement('span');
+    const resumeStar5 = document.createElement('span');
+    resumeStar1.classList = "fa fa-star"
+    resumeStar2.classList = "fa fa-star"
+    resumeStar3.classList = "fa fa-star"
+    resumeStar4.classList = "fa fa-star"
+    resumeStar5.classList = "fa fa-star"
+    resumeStar1.dataset.starId = "1"
+    resumeStar2.dataset.starId = "2"
+    resumeStar3.dataset.starId = "3"
+    resumeStar4.dataset.starId = "4"
+    resumeStar5.dataset.starId = "5"
+    starDiv.appendChild(resumeStar1);
+    starDiv.appendChild(resumeStar2);
+    starDiv.appendChild(resumeStar3);
+    starDiv.appendChild(resumeStar4);
+    starDiv.appendChild(resumeStar5);
+    starDiv.classList = "star-container"
     resumeImg.src = resumeObj.image_url;
     resumeDiv.className = 'resume-show-div';
     resumeDiv.appendChild(resumeImg);
+    resumeDiv.appendChild(starDiv);
     return resumeDiv;
   }
 

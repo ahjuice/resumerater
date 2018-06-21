@@ -187,6 +187,11 @@ const View = (function createViewClass(){
           .then(resumeObj => Adapter.getComments(resumeObj.id))
           .then(commentArray => View.checkForComments(commentArray))
 
+        document.addEventListener('click', function(e) {
+          if (e.target.parentElement.className === "star-container") {
+              e.target.classList.toggle("checked")
+          }
+        })
 
         document.addEventListener('submit', function(e) {
           e.preventDefault()
