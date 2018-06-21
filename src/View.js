@@ -149,7 +149,10 @@ const View = (function createViewClass(){
         content.innerHTML += FormBuilder.createComment()
         Adapter.getComments(selectedResume.id)
             .then(commentArray => View.checkForComments(commentArray))
-            
+        // Have comment functionality...
+        // event listener for comment form
+        // use Adapter.createComment() to persist to db
+        // use Comment.renderComments to add to page
        
       }
 
