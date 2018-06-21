@@ -24,6 +24,9 @@ const View = (function createViewClass(){
           case 'addResume':
             View.addResume();
             break;
+          case 'resumeIndex':
+            View.resumeIndex();
+            break;
           default:
 
         }
@@ -141,10 +144,16 @@ const View = (function createViewClass(){
 
       static userWithResumes(){
         let welcomeUser = `<h1 id="user-name-heading">Welcome ${currentUser.name}!</h1>`
+        // let goToAll = `<button id="go-to-resumes">Go to Resumes!</button>`
         let addResumeBtn = `<button id="add-resume-btn">Add Resume!</button>`
         content.innerHTML = welcomeUser
+        // content.innerHTML += goToAll
         content.innerHTML += addResumeBtn
         Resume.renderResumes(currentUser.resumes)
+
+        // document.querySelector('#go-to-resumes').addEventListener('click', (e) =>
+        //     View.render('resumeIndex')
+        // )
 
         document.querySelector('#add-resume-btn').addEventListener('click', (e) =>
             View.render('addResume')
@@ -235,6 +244,12 @@ const View = (function createViewClass(){
                 })
         })
       }
+
+    static resumeIndex() {
+      content.innerHTML = `<h1>All Resumes</h1>`
+      Adapter.getResumes()
+        .then(Resume.renderResumes)
+    }
 
     }
 })()
