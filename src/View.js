@@ -149,8 +149,16 @@ const View = (function createViewClass(){
         content.innerHTML += FormBuilder.createComment()
         Adapter.getComments(selectedResume.id)
             .then(commentArray => View.checkForComments(commentArray))
+<<<<<<< HEAD
 
 
+=======
+        // Have comment functionality...
+        // event listener for comment form
+        // use Adapter.createComment() to persist to db
+        // use Comment.renderComments to add to page
+       
+>>>>>>> 6f955f189a4b7f1d123ee78f4d02ff7c61f5f751
       }
 
       static setCurrentUser(obj){
