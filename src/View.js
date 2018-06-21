@@ -71,7 +71,8 @@ const View = (function createViewClass(){
           }
 
           Adapter.createUser(data)
-            .then(View.render("userNoResumes"))
+            .then(data => View.setCurrentUser(data))
+            .then(data => View.checkForResumes(data))
         })
 
 
@@ -94,6 +95,15 @@ const View = (function createViewClass(){
             }
 
           Adapter.login(data)
+            .then((function(response) {
+              if (response.code === 400) {
+                console.log("Response was no good.")
+                View.render('login');
+                throw alert("Incorrect Login Information!")
+              } else {
+                return response;
+              }
+            }))
             .then(obj => View.setCurrentUser(obj))
             .then(obj => View.checkForResumes(obj))
 
@@ -103,14 +113,29 @@ const View = (function createViewClass(){
       static userNoResumes(){
         //Welcome user with their name and add resume form builder
         let welcomeUser = `<h1>Welcome ${currentUser.name}!</h1>
-        <br>
         <h5>Enter a Resume</h5>
         `
         welcomeUser += FormBuilder.createResume();
         content.innerHTML = welcomeUser;
 
         //after successful submission of resume, re-render their page to show resume
-        View.render('userWithResumes');
+        const resumeForm = document.querySelector('#create-resume-form')
+        resumeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log(e.target.children)
+            const data = {
+                title: e.target.children[1].value,
+                image_url: e.target.children[4].value,
+                industry: e.target.children[7].value,
+                user_id: currentUser.id
+            }
+
+            Adapter.createResume(data)
+            .then(resumeData => {
+                    currentUser.resumes.push(resumeData)
+                    View.render('userWithResumes')
+                })
+        })
 
       }
 
@@ -141,24 +166,35 @@ const View = (function createViewClass(){
 
     //   }
 
-      static resumeView(id){
+      static resumeView(resumeId){
         content.innerHTML = '';
-        let selectedResume = currentUser.resumes.find(resume => resume.id === parseInt(id))
+        let selectedResume = currentUser.resumes.find(resume => resume.id === parseInt(resumeId))
         content.innerHTML = `<h1>${selectedResume.title}</h1>`
         content.appendChild(Resume.showResume(selectedResume))
         content.innerHTML += FormBuilder.createComment()
         Adapter.getComments(selectedResume.id)
             .then(commentArray => View.checkForComments(commentArray))
-<<<<<<< HEAD
 
+        const form = document.querySelector("form")
 
-=======
+        form.addEventListener('submit', function(e) {
+          e.preventDefault()
+          const commentContent = document.querySelector("#content-input").value
+
+          let data = {
+            content: commentContent,
+            poster_id: currentUser.id,
+            resume_id: parseInt(resumeId)
+          }
+
+          Adapter.createComment(resumeId, data)
+            .then(comment => View.resumeView(comment.resume_id))
+        })
         // Have comment functionality...
         // event listener for comment form
         // use Adapter.createComment() to persist to db
         // use Comment.renderComments to add to page
-       
->>>>>>> 6f955f189a4b7f1d123ee78f4d02ff7c61f5f751
+
       }
 
       static setCurrentUser(obj){

@@ -74,7 +74,9 @@ class Adapter {
       },
       body: jsonCommentData
     }
-    return fetch(`${resumesURL}/${resumeId}/comments`, options).then(r => r.json())
+    return fetch(`${resumesURL}/${resumeId}/comments`, options)
+      .then(r => r.json())
+      .catch(error => console.log(error))
   }
 
   static login(email) {
@@ -86,7 +88,9 @@ class Adapter {
       },
       body: jsonEmail
     }
-    return fetch(`${baseURL}/login`, options).then(r => r.json())
+    return fetch(`${baseURL}/login`, options)
+      .then(r => r.json())
+      .catch(error => console.error(error));
   }
 
   //This update method will be for future use once we have a backend controller action and html edit form rendered
