@@ -27,8 +27,9 @@ class FormBuilder {
 
   static createComment(){
     return `
+    <h4>Comment Section</h4>
     <form id="create-comment-form" action="#" method="post">
-      <textarea id="content-input"maxlength="250" name="content"></textarea>
+      <textarea id="content-input"maxlength="250" row="20" columns="100" name="content" placeholder="Add New Comment"></textarea>
       <input type="submit" value="Submit">
     </form>
     `

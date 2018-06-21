@@ -21,6 +21,9 @@ const View = (function createViewClass(){
           case 'userWithResumes':
             View.userWithResumes();
             break;
+          case 'addResume':
+            View.addResume();
+            break;
           default:
 
         }
@@ -93,21 +96,72 @@ const View = (function createViewClass(){
           Adapter.login(data)
             .then(obj => View.setCurrentUser(obj))
             .then(obj => View.checkForResumes(obj))
+
         })
       }
 
       static userNoResumes(){
-        console.log("I have no resumes")
+        //Welcome user with their name and add resume form builder
+        let welcomeUser = `<h1>Welcome ${currentUser.name}!</h1>
+        <br>
+        <h5>Enter a Resume</h5>
+        `
+        welcomeUser += FormBuilder.createResume();
+        content.innerHTML = welcomeUser;
+
+        //after successful submission of resume, re-render their page to show resume
+        View.render('userWithResumes');
+
       }
 
       static userWithResumes(){
-        let currentResumes = currentUser.resumes
-        Resume.renderResumes(currentResumes)
+        let welcomeUser = `<h1 id="user-name-heading">Welcome ${currentUser.name}!</h1>`
+        let addResumeBtn = `<button id="add-resume-btn">Add Resume!</button>`
+        content.innerHTML = welcomeUser
+        content.innerHTML += addResumeBtn
+        Resume.renderResumes(currentUser.resumes)
+
+        document.querySelector('#add-resume-btn').addEventListener('click', (e) =>
+            View.render('addResume')
+        )
+
+        document.addEventListener('click', (e) => {
+
+            if (e.target.className === 'img') {
+                console.log(e.target.parentElement.dataset.resumeId)
+                // Adapter.getResume(e.target.parentElement.dataset.resumeId)
+                View.resumeView(e.target.parentElement.dataset.resumeId)
+            }
+        })
+
+      }
+
+    //   static findResume(id) {
+
+
+    //   }
+
+      static resumeView(id){
+        content.innerHTML = '';
+        let selectedResume = currentUser.resumes.find(resume => resume.id === parseInt(id))
+        content.innerHTML = `<h1>${selectedResume.title}</h1>`
+        content.appendChild(Resume.showResume(selectedResume))
+        content.innerHTML += FormBuilder.createComment()
+        Adapter.getComments(selectedResume.id)
+            .then(commentArray => View.checkForComments(commentArray))
+
+
       }
 
       static setCurrentUser(obj){
         currentUser = obj
         return obj
+      }
+
+      static checkForComments(commentArray) {
+          if (commentArray.length > 0) {
+           return Comment.renderComments(commentArray)
+          }
       }
 
       static checkForResumes(obj){
@@ -116,6 +170,26 @@ const View = (function createViewClass(){
         } else {
           View.render('userWithResumes')
         }
+      }
+
+      static addResume() {
+        content.innerHTML = FormBuilder.createResume()
+        const resumeForm = document.querySelector('#create-resume-form')
+        resumeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = {
+                title: e.target.children[1].value,
+                image_url: e.target.children[4].value,
+                industry: e.target.children[6].value,
+                user_id: currentUser.id
+            }
+
+            Adapter.createResume(data)
+            .then(resumeData => {
+                    currentUser.resumes.push(resumeData)
+                    View.render('userWithResumes')
+                })
+        })
       }
 
     }

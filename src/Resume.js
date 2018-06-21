@@ -10,7 +10,18 @@ class Resume {
     const resumeDiv = document.createElement('div');
     const resumeImg = document.createElement('img');
     resumeDiv.className = 'resume-div';
+    resumeDiv.dataset.resumeId = resumeObj.id
+    resumeImg.classList = 'img'
     resumeImg.src = resumeObj.image_url;
+    resumeDiv.appendChild(resumeImg);
+    return resumeDiv;
+  }
+
+  static showResume(resumeObj) {
+    const resumeDiv = document.createElement('div');
+    const resumeImg = document.createElement('img');
+    resumeImg.src = resumeObj.image_url;
+    resumeDiv.className = 'resume-show-div';
     resumeDiv.appendChild(resumeImg);
     return resumeDiv;
   }
