@@ -9,10 +9,16 @@ class Resume {
   static buildResume(resumeObj) {
     const resumeDiv = document.createElement('div');
     const resumeImg = document.createElement('img');
+    const resumeTitle = document.createElement('h3');
+    const resumeIndustry = document.createElement('p');
     resumeDiv.className = 'resume-div';
     resumeDiv.dataset.resumeId = resumeObj.id
     resumeImg.classList = 'img'
     resumeImg.src = resumeObj.image_url;
+    resumeTitle.innerText = resumeObj.title;
+    resumeIndustry.innerText = resumeObj.industry;
+    resumeDiv.appendChild(resumeTitle);
+    resumeDiv.appendChild(resumeIndustry);
     resumeDiv.appendChild(resumeImg);
     return resumeDiv;
   }

@@ -3,6 +3,7 @@ img {
 }
 
 .resume-div {
+  text-align: center;
   margin: 5px;
   border: 1px solid #ccc;
   float: left;

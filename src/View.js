@@ -144,16 +144,16 @@ const View = (function createViewClass(){
 
       static userWithResumes(){
         let welcomeUser = `<h1 id="user-name-heading">Welcome ${currentUser.name}!</h1>`
-        // let goToAll = `<button id="go-to-resumes">Go to Resumes!</button>`
+        let goToAll = `<button id="go-to-resumes">Go to Resumes!</button>`
         let addResumeBtn = `<button id="add-resume-btn">Add Resume!</button>`
         content.innerHTML = welcomeUser
-        // content.innerHTML += goToAll
+        content.innerHTML += goToAll
         content.innerHTML += addResumeBtn
         Resume.renderResumes(currentUser.resumes)
 
-        // document.querySelector('#go-to-resumes').addEventListener('click', (e) =>
-        //     View.render('resumeIndex')
-        // )
+        document.querySelector('#go-to-resumes').addEventListener('click', (e) =>
+            View.render('resumeIndex')
+        )
 
         document.querySelector('#add-resume-btn').addEventListener('click', (e) =>
             View.render('addResume')
@@ -164,7 +164,7 @@ const View = (function createViewClass(){
             if (e.target.className === 'img') {
                 console.log(e.target.parentElement.dataset.resumeId)
                 // Adapter.getResume(e.target.parentElement.dataset.resumeId)
-                View.resumeView(e.target.parentElement.dataset.resumeId)
+                View.resumeShowPage(e.target.parentElement.dataset.resumeId)
             }
         })
 
@@ -175,18 +175,20 @@ const View = (function createViewClass(){
 
     //   }
 
-      static resumeView(resumeId){
+      static resumeShowPage(resumeId){
         content.innerHTML = '';
-        let selectedResume = currentUser.resumes.find(resume => resume.id === parseInt(resumeId))
-        content.innerHTML = `<h1>${selectedResume.title}</h1>`
-        content.appendChild(Resume.showResume(selectedResume))
-        content.innerHTML += FormBuilder.createComment()
-        Adapter.getComments(selectedResume.id)
-            .then(commentArray => View.checkForComments(commentArray))
+        Adapter.getResume(resumeId)
+          .then(resumeObj => {
+            content.innerHTML = `<h1>Title: ${resumeObj.title}</h1><h4>Industry: ${resumeObj.industry}</h4>`
+            content.appendChild(Resume.showResume(resumeObj))
+            content.innerHTML += FormBuilder.createComment()
+            return resumeObj
+          })
+          .then(resumeObj => Adapter.getComments(resumeObj.id))
+          .then(commentArray => View.checkForComments(commentArray))
 
-        const form = document.querySelector("form")
 
-        form.addEventListener('submit', function(e) {
+        document.addEventListener('submit', function(e) {
           e.preventDefault()
           const commentContent = document.querySelector("#content-input").value
 
@@ -197,7 +199,7 @@ const View = (function createViewClass(){
           }
 
           Adapter.createComment(resumeId, data)
-            .then(comment => View.resumeView(comment.resume_id))
+            .then(comment => View.resumeShowPage(comment.resume_id))
         })
         // Have comment functionality...
         // event listener for comment form
