@@ -65,6 +65,46 @@ class Adapter {
       .catch(error => console.log(error))
   }
 
+  static createComment(resumeId, data) {
+    const jsonCommentData = JSON.stringify(data)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonCommentData
+    }
+    return fetch(`${resumesURL}/${resumeId}/comments`, options)
+      .then(r => r.json())
+      .catch(error => console.log(error))
+  }
+
+  static login(email) {
+    const jsonEmail = JSON.stringify(email)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: jsonEmail
+    }
+    return fetch(`${baseURL}/login`, options)
+      .then(r => r.json())
+      .catch(error => console.error(error));
+  }
+
+  //This update method will be for future use once we have a backend controller action and html edit form rendered
+  // static updateComment(resumeId, commentId, data) {
+  //   const jsonCommentData = JSON.stringify(data)
+  //   const options = {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: jsonCommentData
+  //   }
+  //   return fetch(`${resumesURL}/${resumeId}/comments/${commentId}`, options).then(r => r.json())
+  // }
 
 
 }

@@ -20,3 +20,22 @@ img {
 #user-link {
   grid-column: 19 / 21;
 }
+.resume-div {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+.resume-div img {
+  width: 100%;
+  height: auto;
+}
+
+.resume-show-div {
+  width: 60%
+}
+
+/* #resume-container {
+
+} */

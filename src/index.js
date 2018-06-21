@@ -1,6 +1,7 @@
 let currentUser = null;
 
 document.addEventListener('DOMContentLoaded', init)
+let currentUser;
 
 function init(){
   const homeLink = document.querySelector("#home-link li a");
