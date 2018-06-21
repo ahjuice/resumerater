@@ -101,7 +101,8 @@ const View = (function createViewClass(){
       }
 
       static userWithResumes(){
-        console.log("I have resumes")
+        let currentResumes = currentUser.resumes
+        Resume.renderResumes(currentResumes)
       }
 
       static setCurrentUser(obj){
@@ -110,7 +111,6 @@ const View = (function createViewClass(){
       }
 
       static checkForResumes(obj){
-        console.log(obj)
         if (obj.resumes.length === 0) {
           View.render('userNoResumes')
         } else {

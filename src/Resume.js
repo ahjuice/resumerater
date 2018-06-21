@@ -16,10 +16,12 @@ class Resume {
   }
 
   static renderResumes(resumeArr) {
+    console.log(resumeArr)
     const content = document.querySelector("#main-content");
     const resumesContainer = document.createElement('div');
     resumesContainer.id = 'resume-container';
     resumeArr.forEach(resumeObj => {
+      console.log(resumeObj)
       const div = Resume.buildResume(resumeObj);
       content.appendChild(div);
     })
