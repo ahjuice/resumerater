@@ -72,7 +72,10 @@ const View = (function createViewClass(){
 
           Adapter.createUser(data)
             .then(data => View.setCurrentUser(data))
-            .then(data => View.checkForResumes(data))
+            .then(data => {
+              Navbar.render('standardUser');
+              View.checkForResumes(data);
+            })
         })
 
 
@@ -105,7 +108,10 @@ const View = (function createViewClass(){
               }
             }))
             .then(obj => View.setCurrentUser(obj))
-            .then(obj => View.checkForResumes(obj))
+            .then(obj => {
+              Navbar.render('standardUser');
+              View.checkForResumes(obj)
+            })
 
         })
       }

@@ -10,7 +10,8 @@ function init(){
   })
 
   if (User.isLoggedIn()) {
-    // stuff here
+    Navbar.render('standardUser');
+    View.checkForResumes(currentUser);
   } else {
     Navbar.render('noUser');
     View.render('welcome');

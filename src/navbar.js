@@ -11,6 +11,9 @@ const Navbar = function() {
         case "noUser":
           Navbar.noUser();
           break;
+        case "standardUser":
+          Navbar.standardUser();
+          break;
         default:
 
       }
@@ -27,6 +30,21 @@ const Navbar = function() {
 
       const li = document.createElement("li");
       li.appendChild(loginLink);
+
+      userLink.appendChild(li);
+    }
+
+    static standardUser() {
+      const profileLink = document.createElement("a");
+      profileLink.href = "#"
+      profileLink.innerHTML = "My Profile"
+      profileLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        View.checkForResumes(currentUser);
+      });
+
+      const li = document.createElement("li");
+      li.appendChild(profileLink);
 
       userLink.appendChild(li);
     }
