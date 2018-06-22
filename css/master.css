@@ -24,7 +24,7 @@ li {
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  padding: 15px 100px;
+  padding: 1px 85px 1px 65px;
   background-color: white;
 }
 
@@ -39,6 +39,11 @@ img {
   justify-content: center;
   align-items: center;
 }
+
+/* .resume-container {
+  display: flex;
+  flex-wrap: wrap;
+} */
 
 .resume-div {
   text-align: center;
