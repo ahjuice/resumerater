@@ -19,6 +19,33 @@ ul {
   list-style-type: none;
 }
 
+ul.navbar {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li.navbar {
+  background-color: #333;
+  border-color: #333;
+  float: left;
+}
+
+li a {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
 li {
   border-bottom: 1px solid #ccc;
   border-top: 1px solid #ccc;
