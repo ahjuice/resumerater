@@ -15,11 +15,8 @@ const View = (function createViewClass(){
           case 'login':
             View.login();
             break;
-          case 'userNoResumes':
-            View.userNoResumes();
-            break;
-          case 'userWithResumes':
-            View.userWithResumes();
+          case 'profile':
+            View.profile();
             break;
           case 'addResume':
             View.addResume();
@@ -75,7 +72,7 @@ const View = (function createViewClass(){
 
           Adapter.createUser(data)
             .then(data => View.setCurrentUser(data))
-            .then(data => View.checkForResumes(data))
+            .then(data => View.render('profile'))
         })
 
 
@@ -108,7 +105,7 @@ const View = (function createViewClass(){
               }
             }))
             .then(obj => View.setCurrentUser(obj))
-            .then(obj => View.checkForResumes(obj))
+            .then(obj => View.render('profile'))
 
         })
       }
@@ -224,11 +221,11 @@ const View = (function createViewClass(){
           }
       }
 
-      static checkForResumes(obj){
-        if (obj.resumes.length === 0) {
-          View.render('userNoResumes')
+      static profile(){
+        if (currentUser.resumes.length === 0) {
+          View.userNoResumes();
         } else {
-          View.render('userWithResumes')
+          View.userWithResumes()
         }
       }
 
@@ -247,7 +244,7 @@ const View = (function createViewClass(){
             Adapter.createResume(data)
             .then(resumeData => {
                     currentUser.resumes.push(resumeData)
-                    View.render('userWithResumes')
+                    View.render('profile')
                 })
         })
       }
