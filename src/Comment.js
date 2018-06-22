@@ -1,12 +1,13 @@
 class Comment {
-    
+
     static buildComment(commentObj) {
         const commentLi = document.createElement('li')
         commentLi.classList.add('comment-El')
-        commentLi.append(commentObj.content)
+        const contentP = `<p>${commentObj.content}</p>`
+        commentLi.innerHTML = contentP
         return commentLi
     }
-    
+
     static renderComments(commentArray) {
         const content = document.querySelector("#main-content");
         const commentUl = document.createElement('ul')

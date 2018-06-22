@@ -113,7 +113,7 @@ const View = (function createViewClass(){
       static userNoResumes(){
         //Welcome user with their name and add resume form builder
         let welcomeUser = `<h1>Welcome ${currentUser.name}!</h1>
-        <h5>Enter a Resume</h5>
+        <h3>Enter a Resume</h3>
         `
         welcomeUser += FormBuilder.createResume();
         content.innerHTML = welcomeUser;
@@ -122,18 +122,17 @@ const View = (function createViewClass(){
         const resumeForm = document.querySelector('#create-resume-form')
         resumeForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log(e.target.children)
             const data = {
                 title: e.target.children[1].value,
-                image_url: e.target.children[4].value,
-                industry: e.target.children[7].value,
+                image_url: e.target.children[3].value,
+                industry: e.target.children[5].value,
                 user_id: currentUser.id
             }
 
             Adapter.createResume(data)
             .then(resumeData => {
                     currentUser.resumes.push(resumeData)
-                    View.render('userWithResumes')
+                    View.render('profile')
                 })
         })
 
@@ -236,8 +235,8 @@ const View = (function createViewClass(){
             e.preventDefault();
             const data = {
                 title: e.target.children[1].value,
-                image_url: e.target.children[4].value,
-                industry: e.target.children[6].value,
+                image_url: e.target.children[3].value,
+                industry: e.target.children[5].value,
                 user_id: currentUser.id
             }
 
