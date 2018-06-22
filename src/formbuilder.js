@@ -6,7 +6,7 @@ class FormBuilder {
       <input id="user-name-input"type="text" name="name"><br>
       Email:<br>
       <input id="email-input" type="text" name="email">
-      <input type="submit" value="Submit">
+      <input class="button" type="submit" value="Submit">
     </form>
     `
   }
@@ -20,7 +20,7 @@ class FormBuilder {
       <input id="image-url-input" type="text" name="image_url"><br>
       Industry:<br>
       <input id="industry-input" type="text" name="industry">
-      <input type="submit" value="Submit">
+      <input class="button" type="submit" value="Submit">
     </form>
     `
   }
@@ -30,7 +30,8 @@ class FormBuilder {
     <h4>Comment Section</h4>
     <form id="create-comment-form" action="#" method="post">
       <textarea id="content-input" maxlength="250" row="20" columns="100" name="content" placeholder="Add New Comment"></textarea>
-      <input type="submit" value="Submit">
+      <br>
+      <input class="button" type="submit" value="Submit">
     </form>
     `
   }
@@ -40,7 +41,7 @@ class FormBuilder {
     <form id="login-user-form" action="#" method="post">
       Email:<br>
       <input id="email-input" type="text" name="email">
-      <input type="submit" value="Submit">
+      <input class="button" type="submit" value="Submit">
     </form>
     `
   }

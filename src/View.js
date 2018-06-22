@@ -33,8 +33,8 @@ const View = (function createViewClass(){
 
         const html = `
           <h1>Welcome to ResumeRater!</h1>
-          <button id="login-button">Log In</button>
-          <button id="signup-button">Sign Up</button>
+          <button class="button" id="login-button">Log In</button>
+          <button class="button" id="signup-button">Sign Up</button>
         `;
         content.innerHTML = html;
 
@@ -141,8 +141,8 @@ const View = (function createViewClass(){
 
       static userWithResumes(){
         let welcomeUser = `<h1 id="user-name-heading">Welcome ${currentUser.name}!</h1>`
-        let goToAll = `<button id="go-to-resumes">Go to Resumes!</button>`
-        let addResumeBtn = `<button id="add-resume-btn">Add Resume!</button>`
+        let goToAll = `<button class="button" id="go-to-resumes">Go to Resumes!</button>`
+        let addResumeBtn = `<button class="button" id="add-resume-btn">Add Resume!</button>`
         content.innerHTML = welcomeUser
         content.innerHTML += goToAll
         content.innerHTML += addResumeBtn
