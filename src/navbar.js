@@ -1,9 +1,11 @@
 const Navbar = function() {
+  const homeLink = document.querySelector("#home-link");
   const navLinks = document.querySelector("#nav-links");
   const userLink = document.querySelector("#user-link");
 
   return class Navbar {
     static render(view) {
+      homeLink.innerHTML = "";
       navLinks.innerHTML = "";
       userLink.innerHTML = "";
 
@@ -20,48 +22,40 @@ const Navbar = function() {
     }
 
     static noUser() {
-      // const loginLink = document.createElement("a");
-      // loginLink.href = "#"
-      // loginLink.innerHTML = "Log In"
-      // loginLink.addEventListener('click', (e) => {
-      //   e.preventDefault();
-      //   View.render('login');
-      // });
+      // home link
+      Navbar.buildLink("ResumeRater", homeLink, "welcome");
 
-      const loginLink = Navbar.buildLink("Log In", "login");
+      // nav links
 
-      const li = document.createElement("li");
-      li.appendChild(loginLink);
+      // user link
+      Navbar.buildLink("Log In", userLink, "login");
 
-      userLink.appendChild(li);
     }
 
     static standardUser() {
-      // const profileLink = document.createElement("a");
-      // profileLink.href = "#"
-      // profileLink.innerHTML = "My Profile"
-      // profileLink.addEventListener('click', (e) => {
-      //   e.preventDefault();
-      //   View.profile();
-      // });
+      // home link
+      Navbar.buildLink("ResumeRater", homeLink, "profile");
 
-      const profileLink = Navbar.buildLink("My Profile", "profile");
+      // nav links
+      Navbar.buildLink("Rate Resumes!", navLinks, "resumeIndex")
 
-      const li = document.createElement("li");
-      li.appendChild(profileLink);
-
-      userLink.appendChild(li);
+      // user link
+      Navbar.buildLink("My Profile", userLink, "profile");
     }
 
-    static buildLink(text, viewToRender) {
+    static buildLink(linkText, divToAppend, viewToRender) {
       const link = document.createElement("a");
       link.href = "#"
-      link.innerHTML = text
+      link.innerHTML = linkText
       link.addEventListener('click', (e) => {
         e.preventDefault();
         View.render(viewToRender);
       });
-      return link;
+
+      const li = document.createElement("li");
+      li.appendChild(link);
+
+      divToAppend.appendChild(li);
     }
   }
 }();

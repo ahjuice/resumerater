@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', init)
 
 
 function init(){
-  const homeLink = document.querySelector("#home-link li a");
-  homeLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    View.render('welcome');
-  })
+  // const homeLink = document.querySelector("#home-link li a");
+  // homeLink.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   View.render('welcome');
+  // })
 
   if (User.isLoggedIn()) {
     Navbar.render('standardUser');

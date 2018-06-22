@@ -4,23 +4,29 @@ img {
 
 .nav-list {
   display: grid;
-  grid-auto-columns: 5%;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "home nav user";
   list-style-type: none;
   -webkit-padding-start: 0px;
 }
 
+.nav-list div li {
+  padding: 10px 25px 10px 25px;
+}
+
 #home-link {
-  grid-column: 1 / 4;
+  grid-area: home;
 }
 
 #nav-links {
-  grid-column: 4 / 19;
+  grid-area: nav;
 }
 
 #user-link {
-  grid-column: 19 / 21;
+  grid-area: user;
   justify-self: end;
 }
+
 .resume-div {
   margin: 5px;
   border: 1px solid #ccc;
