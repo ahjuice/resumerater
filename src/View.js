@@ -176,7 +176,7 @@ const View = (function createViewClass(){
         content.innerHTML = '';
         Adapter.getResume(resumeId)
           .then(resumeObj => {
-            content.innerHTML = `<h1>Title: ${resumeObj.title}</h1><h4>Industry: ${resumeObj.industry}</h4>`
+            content.innerHTML = `<h1>Title: ${resumeObj.title}</h1><h3>Industry: ${resumeObj.industry}</h3>`
             content.appendChild(Resume.showResume(resumeObj))
             content.innerHTML += FormBuilder.createComment()
             return resumeObj

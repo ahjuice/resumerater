@@ -24,26 +24,6 @@ class Resume {
   }
 
   static showResume(resumeObj) {
-    // return `<div class="resume-show-div">
-    //   <img src="resumeObj.image_url">
-    //     <div class="star-container">
-    //       <div>
-    //         <div>
-    //           <div>
-    //             <div>
-    //               <div>
-    //               <span class="fa fa-star" data-star-id="1"></span>
-    //               </div>
-    //             <span class="fa fa-star" data-star-id="2"></span>
-    //             </div>
-    //           <span class="fa fa-star" data-star-id="3"></span>
-    //           </div>
-    //         <span class="fa fa-star" data-star-id="4"></span>
-    //         </div>
-    //       <span class="fa fa-star" data-star-id="5"></span>
-    //       </div>
-    //     </div>
-    //   </div>`
     const resumeDiv = document.createElement('div');
     const resumeImg = document.createElement('img');
     const starDiv = document.createElement('div');
@@ -81,7 +61,8 @@ class Resume {
     resumesContainer.id = 'resume-container';
     resumeArr.forEach(resumeObj => {
       const div = Resume.buildResume(resumeObj);
-      content.appendChild(div);
+      resumesContainer.appendChild(div);
     })
+    content.appendChild(resumesContainer);
   }
 }
