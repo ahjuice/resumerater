@@ -32,6 +32,31 @@ img {
   width: 80%
 }
 
+.nav-list {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "home nav user";
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+}
+
+.nav-list div li {
+  padding: 10px 25px 10px 25px;
+}
+
+#home-link {
+  grid-area: home;
+}
+
+#nav-links {
+  grid-area: nav;
+}
+
+#user-link {
+  grid-area: user;
+  justify-self: end;
+}
+
 #main-content {
   display: flex;
   flex-direction: column;
