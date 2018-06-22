@@ -72,7 +72,10 @@ const View = (function createViewClass(){
 
           Adapter.createUser(data)
             .then(data => View.setCurrentUser(data))
-            .then(data => View.render('profile'))
+            .then(data => {
+              Navbar.render('standardUser');
+              View.render('profile');
+            })
         })
 
 
@@ -105,7 +108,10 @@ const View = (function createViewClass(){
               }
             }))
             .then(obj => View.setCurrentUser(obj))
-            .then(obj => View.render('profile'))
+            .then(obj => {
+              Navbar.render('standardUser');
+              View.render('profile');
+            })
 
         })
       }
@@ -224,7 +230,7 @@ const View = (function createViewClass(){
         if (currentUser.resumes.length === 0) {
           View.userNoResumes();
         } else {
-          View.userWithResumes()
+          View.userWithResumes();
         }
       }
 

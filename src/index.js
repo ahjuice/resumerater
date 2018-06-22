@@ -1,18 +1,14 @@
+let currentUser = null;
 document.addEventListener('DOMContentLoaded', init)
-let currentUser;
+
 
 function init(){
-  // Adapter.getResumes()
-  //   .then(Resume.renderResumes)
+  if (User.isLoggedIn()) {
+    Navbar.render('standardUser');
+    View.profile();
+  } else {
+    Navbar.render('noUser');
+    View.render('welcome');
+  }
 
-  View.render('welcome');
 }
-
-
-// function renderImage(arr){
-//   let imageDiv = document.querySelector(".image-div")
-//   let imageHTML = ``
-//   arr.map((image) => imageHTML += `<img src=${image.image_url}>`)
-//   // let imageTag = `<img src=${obj.image_url}>`
-//   imageDiv.innerHTML = imageHTML
-// }
