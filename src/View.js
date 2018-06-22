@@ -96,7 +96,6 @@ const View = (function createViewClass(){
 
           Adapter.login(data)
             .then((function(response) {
-              debugger;
               if (response.code === 400) {
                 console.log("Response was no good.")
                 View.render('login');
