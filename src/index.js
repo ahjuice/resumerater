@@ -11,7 +11,7 @@ function init(){
 
   if (User.isLoggedIn()) {
     Navbar.render('standardUser');
-    View.checkForResumes(currentUser);
+    View.profile();
   } else {
     Navbar.render('noUser');
     View.render('welcome');

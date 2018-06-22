@@ -28,7 +28,7 @@ const Navbar = function() {
       //   View.render('login');
       // });
 
-      const loginLink = Navbar.buildLink("Log In", View.render, ["login"]);
+      const loginLink = Navbar.buildLink("Log In", "login");
 
       const li = document.createElement("li");
       li.appendChild(loginLink);
@@ -42,10 +42,10 @@ const Navbar = function() {
       // profileLink.innerHTML = "My Profile"
       // profileLink.addEventListener('click', (e) => {
       //   e.preventDefault();
-      //   View.checkForResumes(currentUser);
+      //   View.profile();
       // });
 
-      const profileLink = Navbar.buildLink("My Profile", View.checkForResumes, [currentUser]);
+      const profileLink = Navbar.buildLink("My Profile", "profile");
 
       const li = document.createElement("li");
       li.appendChild(profileLink);
@@ -53,13 +53,13 @@ const Navbar = function() {
       userLink.appendChild(li);
     }
 
-    static buildLink(text, listenerFn, argumentsArr) {
+    static buildLink(text, viewToRender) {
       const link = document.createElement("a");
       link.href = "#"
       link.innerHTML = text
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        listenerFn(...argumentsArr);
+        View.render(viewToRender);
       });
       return link;
     }

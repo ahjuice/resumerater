@@ -15,11 +15,8 @@ const View = (function createViewClass(){
           case 'login':
             View.login();
             break;
-          case 'userNoResumes':
-            View.userNoResumes();
-            break;
-          case 'userWithResumes':
-            View.userWithResumes();
+          case 'profile':
+            View.profile();
             break;
           case 'addResume':
             View.addResume();
@@ -74,7 +71,7 @@ const View = (function createViewClass(){
             .then(data => View.setCurrentUser(data))
             .then(data => {
               Navbar.render('standardUser');
-              View.checkForResumes(data);
+              View.profile();
             })
         })
 
@@ -99,6 +96,7 @@ const View = (function createViewClass(){
 
           Adapter.login(data)
             .then((function(response) {
+              debugger;
               if (response.code === 400) {
                 console.log("Response was no good.")
                 View.render('login');
@@ -110,7 +108,7 @@ const View = (function createViewClass(){
             .then(obj => View.setCurrentUser(obj))
             .then(obj => {
               Navbar.render('standardUser');
-              View.checkForResumes(obj)
+              View.profile()
             })
 
         })
@@ -214,11 +212,11 @@ const View = (function createViewClass(){
           }
       }
 
-      static checkForResumes(obj){
-        if (obj.resumes.length === 0) {
-          View.render('userNoResumes')
+      static profile(){
+        if (currentUser.resumes.length === 0) {
+          View.userNoResumes();
         } else {
-          View.render('userWithResumes')
+          View.userWithResumes();
         }
       }
 

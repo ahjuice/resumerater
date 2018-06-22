@@ -19,6 +19,7 @@ img {
 
 #user-link {
   grid-column: 19 / 21;
+  justify-self: end;
 }
 .resume-div {
   margin: 5px;
